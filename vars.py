@@ -1,30 +1,31 @@
 import os
-from os import environ
+from os import TelegramClient, events
 
 # API Configuration
 API_ID = int(os.environ.get("API_ID", ""))
 API_HASH = os.environ.get("API_HASH", "")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "7859092347:AAGVa38pU6B1BZP5p2t435QheR4Df5RZ1Xk")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "7807412044:AAEdUO0kCYO5XJJ0B1rbqW4Sz8g3hlsGJjE")
 
 CREDIT = os.environ.get("CREDIT", "〱PanditJi")
-# MongoDB Configuration
-DATABASE_NAME = os.environ.get("DATABASE_NAME", "PanditJi")
-DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://p89910394:atSLszsbMH2kU71x@cluster0.maj04c0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-MONGO_URL = DATABASE_URL  # For auth system
 
 # Owner and Admin Configuration
-OWNER_ID = int(os.environ.get("OWNER_ID", "6641563263"))
-ADMINS = [int(x) for x in os.environ.get("ADMINS", "6641563263").split()]  # Default to owner ID
+OWNER_ID = int(os.environ.get("OWNER_ID", "7315538633"))
+ADMINS = [int(x) for x in os.environ.get("ADMINS", "1355969543").split()]  # Default to owner ID
 
+AUTH_USER = os.environ.get('AUTH_USERS', '4846763689').split(',')
+AUTH_USERS = [int(user_id) for user_id in AUTH_USER]
+if int(OWNER) not in AUTH_USERS:
+    AUTH_USERS.append(int(OWNER))
+    
 # Channel Configuration
-PREMIUM_CHANNEL = "https://t.me/+FqvxTIl-WBYxYTZl"
+PREMIUM_CHANNEL = "https://t.me/+nLoU_CzRp9YxNDc1"
 # Thumbnail Configuration
 THUMBNAILS = list(map(str, os.environ.get("THUMBNAILS", "https://i.fbcd.co/products/original/ug-logo-designs-2-acbfbf7b80e16df4c902a34d1caf148e7e1feca736e21075114990e62294f3ac.jpg").split()))
 
 # Web Server Configuration
 WEB_SERVER = os.environ.get("WEB_SERVER", "False").lower() == "true"
 WEBHOOK = True  # Don't change this
-PORT = int(os.environ.get("PORT", 8000))
+PORT = int(os.environ.get("PORT", 8080))
 
 # Message Formats
 AUTH_MESSAGES = {
@@ -59,4 +60,5 @@ Please contact the admin @ItsUGBot to get access.</blockquote>""",
 
 <blockquote>Use format: {format}</blockquote>"""
 }
+
 
