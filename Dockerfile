@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ✅ Copy all source code to container
-COPY . .
+COPY requirements.txt . .
+# ✅ Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
 # ✅ Make mp4decrypt executable (if present)
 RUN chmod +x /app/tools/mp4decrypt || true
@@ -34,3 +36,4 @@ RUN pip install --no-cache-dir -U pyrogram==2.0.106 tgcrypto==1.2.5
 
 # ✅ Final command: start Flask + Bot together
 CMD ["sh", "-c", "gunicorn app:app & python3 main.py"]
+
